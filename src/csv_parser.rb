@@ -1,21 +1,28 @@
 require 'csv'
 require 'json'
 
-def csv_to_json(input_csv, output_json)
-	result = "[\n"
-	CSV.open(input_csv, "rb:UTF-8", headers: true, header_converters: :symbol) do |file|
-		file.each do |line|
-			result += create_json(line)
-	  end
-	  result += "\n]"
+class CSVParser
+	def initialize(input_csv, output_json)
+			@input_csv = input_csv
+			@output_json = output_json
 	end
-	File.open(output_json, "w") { |f|
-		f.write result
-	}
-end
 
-def create_json(line)
-	"{
+	def csv_to_json
+		result = "[\n"
+		CSV.open(@input_csv, "rb:UTF-8", headers: true, header_converters: :symbol) do |file|
+			file.each do |line|
+				puts(line)
+				result += create_json(line)
+		 	end
+		  result += "\n]"
+		end
+		File.open(@output_json, "w") { |f|
+			f.write result
+		}
+	end
+
+	def create_json(line)
+		"{
 			\"giver\": { 
 				\"id\": \"#{line[:to].split('#')[1]}\",
 				\"username\": \"#{line[:to].split('#')[0]}\",
@@ -39,4 +46,5 @@ def create_json(line)
 				\"platform\": \"DISCORD\"
 			}
 		}, "
+	end
 end
