@@ -1,0 +1,7 @@
+default_server:
+  name: 'Token Engineering Commons'
+  id: 810180621930070088
+default_channel:
+  name: '🙏｜praise'
+  id: 810180622336262195
+discord_ids: data/discord_ids.csv

@@ -1,0 +1,27 @@
+[
+{
+			"giver":
+				{
+					"id": "",
+					"username": "Some",
+					"profileImageURL": "",
+					"platform": "DISCORD"
+				},
+			"recipients": [
+				{
+					"id": "",
+					"username": "Data",
+					"profileImageURL": "",
+					"platform": "DISCORD"
+				}
+			],
+			"praiseReason": "",
+			"source": {
+				"id": "",
+				"name": "My Server",
+				"channelId": "",
+				"channelName": "My Channel",
+				"platform": "DISCORD"
+			}
+		}, 
+]
