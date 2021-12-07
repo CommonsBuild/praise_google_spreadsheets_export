@@ -20,10 +20,10 @@ class CSVParser
 		@CONFIG = YAML.load(File.read(config_file))
 	end
 
-	def csv_to_json
+	def csv_to_json(pretty: false)
 		result = "[\n"
 		@input_csv.each do |line|
-			result += create_json(line)
+			result += create_json(line, pretty)
 		end
 		result += "\n]"
 		File.open(@output_json, "w") { |f|
@@ -31,23 +31,27 @@ class CSVParser
 		}
 	end
 
-	def create_json(line)
+	def create_json(line, pretty)
+		if pretty
+			formatted_json(line)
+		else
+			json = JSON.generate(
+				giver: user_struct(line[:from]),
+				recipients: [user_struct(line[:to])],
+				praiseReason: line[:reason].partition(/(f|F)or/)[-1].strip(),
+				source: source_struct(line)
+			)
+		end
+	end
+	def source_struct(line)
 		source = source(line)
-		"{
-			\"giver\":
-				#{user_struct(line[:to])},
-			\"recipients\": [
-				#{user_struct(line[:from])}
-			],
-			\"praiseReason\": \"#{line[:reason].partition(/(f|F)or/)[-1].strip()}\",
-			\"source\": {
-				\"id\": \"#{source[:server_id]}\",
-				\"name\": \"#{source[:server_name]}\",
-				\"channelId\": \"#{source[:channel_id]}\",
-				\"channelName\": \"#{source[:channel_name]}\",
-				\"platform\": \"DISCORD\"
-			}
-		}, "
+		JSON.generate(
+			id: source[:server_id],
+			name: source[:server_name],
+			channelId: source[:channel_id],
+			channelName: source[:channel_name],
+			platform: 'DISCORD'
+		)	 
 	end
 
 	def check_for_header(header)
@@ -78,12 +82,12 @@ class CSVParser
 
 	def user_struct(username)
 		user = get_user_from_username(username)
-		return "{
-					\"id\": \"#{user[:discord_id]}\",
-					\"username\": \"#{user[:username]}\",
-					\"profileImageURL\": \"#{user[:imageurl]}\",
-					\"platform\": \"DISCORD\"
-				}"
+		JSON.generate(
+			id: user[:discord_id],
+			username: user[:username],
+			profileImageURL: user[:imageurl],
+			platform: 'DISCORD'
+		)
 	end
 
 	def get_user_from_username(username)
@@ -101,5 +105,34 @@ class CSVParser
 			end
 		end
 puts name, " not found"
+	end
+
+	def formatted_json(line)
+		source = source(line)
+		"{
+			\"giver\":
+				#{formatted_user(line[:to])},
+			\"recipients\": [
+				#{formatted_user(line[:from])}
+			],
+			\"praiseReason\": \"#{line[:reason].partition(/(f|F)or/)[-1].strip()}\",
+			\"source\": {
+				\"id\": \"#{source[:server_id]}\",
+				\"name\": \"#{source[:server_name]}\",
+				\"channelId\": \"#{source[:channel_id]}\",
+				\"channelName\": \"#{source[:channel_name]}\",
+				\"platform\": \"DISCORD\"
+			}
+		}, "
+	end
+
+	def formatted_user(username)
+		user = get_user_from_username(username)
+		return "{
+					\"id\": \"#{user[:discord_id]}\",
+					\"username\": \"#{user[:username]}\",
+					\"profileImageURL\": \"#{user[:imageurl]}\",
+					\"platform\": \"DISCORD\"
+				}"
 	end
 end

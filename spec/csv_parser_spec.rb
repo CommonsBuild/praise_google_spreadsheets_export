@@ -27,7 +27,7 @@ RSpec.describe CSVParser do
 		end
 	end
 
-	context "a discord praise to multiple receivers" do
+	context "a discord praise with multiple @ references" do
 		let(:input_csv) { 'samples/discord/discord_multi_receiver_praise.csv' }
 		let(:output_json) { 'spec/outputs/discord_multi_receiver_praise.json' }
 		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
@@ -49,6 +49,13 @@ RSpec.describe CSVParser do
 		it "uses the default_server and channel ids if none is provided" do
 			expected_json = 'samples/discord/discord_single_receiver_praise.json'
 			parser.csv_to_json
+
+			expect(File.read(output_json)).to eq(File.read(expected_json))
+		end
+
+		it "indents the json if pretty flag is set" do
+			expected_json = 'samples/discord/discord_single_receiver_praise_pretty.json'
+			parser.csv_to_json(pretty: true)
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end

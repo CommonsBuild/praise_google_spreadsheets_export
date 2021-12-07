@@ -1,27 +1,3 @@
 [
-{
-			"giver":
-				{
-					"id": "592383914346020864",
-					"username": "simondlr",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				},
-			"recipients": [
-				{
-					"id": "916379954059542548",
-					"username": "Yineisy Mota",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				}
-			],
-			"praiseReason": "joining our AMA on "Bonding Curves" today! ✨",
-			"source": {
-				"id": "123456789",
-				"name": "Right Here",
-				"channelId": "9876543321",
-				"channelName": "ComedyCentral",
-				"platform": "DISCORD"
-			}
-		}, 
+{"giver":"{\"id\":\"916379954059542548\",\"username\":\"Yineisy Mota\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}","recipients":["{\"id\":\"592383914346020864\",\"username\":\"simondlr\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}"],"praiseReason":"joining our AMA on \"Bonding Curves\" today! ✨","source":"{\"id\":123456789,\"name\":\"Right Here\",\"channelId\":9876543321,\"channelName\":\"ComedyCentral\",\"platform\":\"DISCORD\"}"}
 ]
