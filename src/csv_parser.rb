@@ -33,6 +33,9 @@ class CSVParser
 	end
 
 	def create_json(line, pretty)
+puts "line #{line}"
+puts "from #{user_struct(line[:from])}"
+puts "to #{user_struct(line[:to])}"
 		if pretty
 			formatted_json(line)
 		else
@@ -115,9 +118,9 @@ return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
 		source = source(line)
 		"{
 			\"giver\":
-				#{formatted_user(line[:to])},
+				#{formatted_user(line[:from])},
 			\"recipients\": [
-				#{formatted_user(line[:from])}
+				#{formatted_user(line[:to])}
 			],
 			\"praiseReason\": \"#{line[:reason].partition(/(f|F)or/)[-1].strip()}\",
 			\"source\": {
