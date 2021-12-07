@@ -71,7 +71,7 @@ RSpec.describe CSVParser do
 		let(:output_json) { outputs_folder + testfile + '.json' }
 		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 	
-		it "converts a csv with an array of multiple praises into a json of the specified format" do
+		it "converts a csv into json" do
 			expected_json = outputs_folder + testfile + '.json'
 
 			parser.csv_to_json

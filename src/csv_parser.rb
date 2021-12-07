@@ -23,9 +23,9 @@ class CSVParser
 	def csv_to_json(pretty: false)
 		result = "[\n"
 		@input_csv.each do |line|
-# puts "now parsing: ", line
-			result += create_json(line, pretty)
+			result += create_json(line, pretty) + ",\n"
 		end
+		result.chomp!(",\n")
 		result += "\n]"
 		File.open(@output_json, "w") { |f|
 			f.write result
@@ -33,9 +33,9 @@ class CSVParser
 	end
 
 	def create_json(line, pretty)
-puts "line #{line}"
-puts "from #{user_struct(line[:from])}"
-puts "to #{user_struct(line[:to])}"
+# puts "line #{line}"
+# puts "from #{user_struct(line[:from])}"
+# puts "to #{user_struct(line[:to])}"
 		if pretty
 			formatted_json(line)
 		else
@@ -104,14 +104,11 @@ puts "to #{user_struct(line[:to])}"
 			server_id = username.split('#')[1]
 		end
 		users.each do |row| 
-# puts "row: #{row}"
 			if row[:username] == name 
-# puts "user found: #{row[:discord_id]}"
 				return row
 			end
 		end
-# puts "#{name} not found in the USERS list"
-return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
+		return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
 	end
 
 	def formatted_json(line)
@@ -130,7 +127,7 @@ return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
 				\"channelName\": \"#{source[:channel_name]}\",
 				\"platform\": \"DISCORD\"
 			}
-		}, "
+		}"
 	end
 
 	def formatted_user(username)

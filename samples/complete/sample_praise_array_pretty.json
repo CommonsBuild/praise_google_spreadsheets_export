@@ -23,7 +23,8 @@
 				"channelName": "🙏｜praise",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "395673197615513600",
@@ -47,7 +48,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "395673197615513600",
@@ -71,7 +73,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "395673197615513600",
@@ -95,7 +98,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "395673197615513600",
@@ -119,7 +123,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "395673197615513600",
@@ -143,7 +148,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "183879548394274816",
@@ -167,7 +173,8 @@
 				"channelName": "🤖｜parameters",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "183879548394274816",
@@ -191,7 +198,8 @@
 				"channelName": "🙏｜praise",
 				"platform": "DISCORD"
 			}
-		}, {
+		},
+{
 			"giver":
 				{
 					"id": "183879548394274816",
@@ -215,5 +223,5 @@
 				"channelName": "🙏｜praise",
 				"platform": "DISCORD"
 			}
-		}, 
+		}
 ]
