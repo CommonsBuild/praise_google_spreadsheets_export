@@ -1,6 +1,9 @@
 require_relative '../src/csv_parser'
 
 RSpec.describe CSVParser do
+	let(:samples_folder) { 'samples/discord/' }
+	let(:outputs_folder) { 'spec/outputs/' }
+
 	context "intitialization" do
 		let(:input_csv) { 'spec/spec_data/dummy.csv' }
 		let(:output_json) { 'spec/spec_data/dummy.json' }
@@ -12,7 +15,7 @@ RSpec.describe CSVParser do
 		end
 
 		it "gets its config from a YAML file" do
-			yaml_path = 'spec/outputs/dummy.yml'
+			yaml_path = outputs_folder + 'dummy.yml'
 			yaml = File.open(yaml_path, 'w') { |f|
 				f << "default_server:\n"
 				f << "  name: 'My Server'\n"
@@ -28,12 +31,13 @@ RSpec.describe CSVParser do
 	end
 
 	context "a discord praise with multiple @ references" do
-		let(:input_csv) { 'samples/discord/discord_multi_receiver_praise.csv' }
-		let(:output_json) { 'spec/outputs/discord_multi_receiver_praise.json' }
+		testfile = 'discord_multi_receiver_praise'
+		let(:input_csv) { samples_folder + testfile + '.csv' }
+		let(:output_json) { outputs_folder + testfile + '.json' }
 		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 	
 		it "converts a csv with an array of multiple praises into a json of the specified format" do
-			expected_json = 'samples/discord/discord_multi_receiver_praise.json'
+			expected_json = samples_folder + testfile + '.json'
 
 			parser.csv_to_json
 
@@ -42,20 +46,35 @@ RSpec.describe CSVParser do
 	end
 
 	context "a discord praise to a single receiver" do
-		let(:input_csv) { 'samples/discord/discord_single_receiver_praise.csv' }
-		let(:output_json) { 'spec/outputs/discord_single_receiver_praise.json' }
+		testfile = 'discord_single_receiver_praise'
+		let(:input_csv) { samples_folder + testfile + '.csv' }
+		let(:output_json) { outputs_folder + testfile + '.json' }
 		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 	
 		it "uses the default_server and channel ids if none is provided" do
-			expected_json = 'samples/discord/discord_single_receiver_praise.json'
+			expected_json = samples_folder + testfile + '.json'
 			parser.csv_to_json
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end
 
 		it "indents the json if pretty flag is set" do
-			expected_json = 'samples/discord/discord_single_receiver_praise_pretty.json'
+			expected_json = samples_folder + testfile +'_pretty.json'
 			parser.csv_to_json(pretty: true)
+
+			expect(File.read(output_json)).to eq(File.read(expected_json))
+		end
+	end
+	context "a discord praise with a user with unknown discord_id" do
+		testfile = 'discord_unknown_receiver_praise'
+		let(:input_csv) { samples_folder + testfile + '.csv' }
+		let(:output_json) { outputs_folder + testfile + '.json' }
+		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
+	
+		it "converts a csv with an array of multiple praises into a json of the specified format" do
+			expected_json = outputs_folder + testfile + '.json'
+
+			parser.csv_to_json
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end

@@ -23,6 +23,7 @@ class CSVParser
 	def csv_to_json(pretty: false)
 		result = "[\n"
 		@input_csv.each do |line|
+# puts "now parsing: ", line
 			result += create_json(line, pretty)
 		end
 		result += "\n]"
@@ -100,11 +101,14 @@ class CSVParser
 			server_id = username.split('#')[1]
 		end
 		users.each do |row| 
+# puts "row: #{row}"
 			if row[:username] == name 
+# puts "user found: #{row[:discord_id]}"
 				return row
 			end
 		end
-puts name, " not found"
+# puts "#{name} not found in the USERS list"
+return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
 	end
 
 	def formatted_json(line)
