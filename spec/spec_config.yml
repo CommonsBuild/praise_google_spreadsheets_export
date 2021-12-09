@@ -1,7 +1,7 @@
 default_server:
-  name: 'Right Here'
-  id: 123456789
+  name: "Right Here"
+  id: "123456789"
 default_channel:
-  name: 'ComedyCentral'
-  id: 9876543321
-discord_ids: 'spec/spec_data/spec_discord_ids.csv'
+  name: "ComedyCentral"
+  id: "9876543321"
+discord_ids: "spec/spec_data/spec_discord_ids.csv"

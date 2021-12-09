@@ -1,11 +1,13 @@
 require 'yaml'
 require 'csv'
 require 'json'
+require 'pry'
 
 class CSVParser
 	def initialize(input_csv, output_json, *args)
 		@input_csv = CSV.open(input_csv, "rb:UTF-8", headers: true, header_converters: :symbol)
-		@output_json = output_json
+		@input_rows = CSV.read(input_csv, encoding: "UTF-8").count
+		@output_json = File.open(output_json, "w")
 		
 		config_file = 'config.yml'
 		if args.count > 0
@@ -21,21 +23,20 @@ class CSVParser
 	end
 
 	def csv_to_json(pretty: false)
-		result = "[\n"
-		@input_csv.each do |line|
-			result += create_json(line, pretty) + ",\n"
-		end
-		result.chomp!(",\n")
-		result += "\n]"
-		File.open(@output_json, "w") { |f|
-			f.write result
-		}
+		@output_json << "[\n"
+		@input_csv.each_with_index do |line, idx|
+			if idx == @input_rows - 2
+				@output_json << create_json(line, pretty)
+			else
+				@output_json << create_json(line, pretty) + ",\n"
+			end
+		end	
+
+		@output_json << "\n]"
+		@output_json.close
 	end
 
 	def create_json(line, pretty)
-# puts "line #{line}"
-# puts "from #{user_struct(line[:from])}"
-# puts "to #{user_struct(line[:to])}"
 		if pretty
 			formatted_json(line)
 		else
@@ -59,7 +60,7 @@ class CSVParser
 	end
 
 	def check_for_header(header)
-		@input_csv.read.headers.include?(header)
+		@input_csv.headers.include?(header)
 	end
 
 	def source(line)
@@ -97,7 +98,6 @@ class CSVParser
 	def get_user_from_username(username)
 		users = CSV.open(@CONFIG['discord_ids'], "rb:UTF-8", headers: true, header_converters: :symbol) if @CONFIG['discord_ids']
 		name = username
-
 		server_id = ''
 		if username.match(/#/)
 			name = username.split('#')[0]

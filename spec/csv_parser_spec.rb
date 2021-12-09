@@ -1,15 +1,14 @@
 require_relative '../src/csv_parser'
 
 RSpec.describe CSVParser do
-	let(:samples_folder) { 'samples/discord/' }
 	let(:outputs_folder) { 'spec/outputs/' }
+	let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 
 	context "intitialization" do
 		let(:input_csv) { 'spec/spec_data/dummy.csv' }
 		let(:output_json) { 'spec/spec_data/dummy.json' }
 
 		it "knows if it is being called for tests" do
-			parser = CSVParser.new(input_csv, output_json, mode: 'test')
 			parser.csv_to_json
 			expect(File.read(output_json)).to match(/ComedyCentral/)
 		end
@@ -29,12 +28,27 @@ RSpec.describe CSVParser do
 			expect(File.read(output_json)).to include('My Server')
 		end
 	end
-
 	context "a discord praise with multiple @ references" do
-		testfile = 'discord_multi_receiver_praise'
+		testfile = 'spec_csv'
+		let(:samples_folder) { 'spec/spec_data/' }
 		let(:input_csv) { samples_folder + testfile + '.csv' }
 		let(:output_json) { outputs_folder + testfile + '.json' }
-		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
+
+		it "converts a csv with an array of multiple praises into a json of the specified format" do
+			expected_json = samples_folder + testfile + '.json'
+
+			# parser.csv_to_json(pretty: true)
+			parser.csv_to_json
+
+			expect(File.read(output_json)).to eq(File.read(expected_json))			
+		end
+	end
+
+	context "a discord praise with multiple @ references" do
+		testfile = 'discord_praise_array'
+		let(:samples_folder) { 'samples/discord/' }
+		let(:input_csv) { samples_folder + testfile + '.csv' }
+		let(:output_json) { outputs_folder + testfile + '.json' }
 	
 		it "converts a csv with an array of multiple praises into a json of the specified format" do
 			expected_json = samples_folder + testfile + '.json'
@@ -47,9 +61,9 @@ RSpec.describe CSVParser do
 
 	context "a discord praise to a single receiver" do
 		testfile = 'discord_single_receiver_praise'
+		let(:samples_folder) { 'samples/discord/' }
 		let(:input_csv) { samples_folder + testfile + '.csv' }
 		let(:output_json) { outputs_folder + testfile + '.json' }
-		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 	
 		it "uses the default_server and channel ids if none is provided" do
 			expected_json = samples_folder + testfile + '.json'
@@ -67,9 +81,9 @@ RSpec.describe CSVParser do
 	end
 	context "a discord praise with a user with unknown discord_id" do
 		testfile = 'discord_unknown_receiver_praise'
+		let(:samples_folder) { 'samples/discord/' }
 		let(:input_csv) { samples_folder + testfile + '.csv' }
 		let(:output_json) { outputs_folder + testfile + '.json' }
-		let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 	
 		it "converts a csv into json" do
 			expected_json = outputs_folder + testfile + '.json'
