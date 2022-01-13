@@ -1,6 +1,7 @@
-to,from,reason
-bro,sis,for reason with no quote
+to,from,reason,date
+bro,sis,for reason with no quote,2020-10-10
 A gal,2 gal,"for quote because of
-a newline"
-bro,sis,for reason with no quote
-One guy,Other guy,"for quote because,of a comma"
+a newline",2020-10-10
+bro,sis,for reason with no quote,2020-10-10
+One guy,Other guy,"for quote because,of a comma",2020-10-10
+lad,lass,"for quote because of ""internal"" double quote",2020-10-10

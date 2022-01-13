@@ -1,27 +1,22 @@
 [
-{
-			"giver":
-				{
-					"id": "915659709657280592",
-					"username": "NikosamA98",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				},
-			"recipients": [
-				{
-					"id": "908547168925810699",
-					"username": "EdgarWeb3",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				}
-			],
-			"praiseReason": "inviting me to the server 😄",
-			"source": {
-				"id": "123456789",
-				"name": "Right Here",
-				"channelId": "9876543321",
-				"channelName": "ComedyCentral",
+	{
+		"createdAt": "2021-12-01 00:00:00 +0800",
+		"giver":
+			{
+				"id": "915659709657280592",
+				"username": "NikosamA98#5909",
+				"profileImageURL": "",
 				"platform": "DISCORD"
-			}
-		}
+			},
+		"receiver":
+			{
+				"id": "908547168925810699",
+				"username": "EdgarWeb3#5783",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "inviting me to the server 😄",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	}
 ]

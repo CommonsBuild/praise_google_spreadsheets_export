@@ -4,13 +4,17 @@ RSpec.describe CSVParser do
 	let(:outputs_folder) { 'spec/outputs/' }
 	let(:parser) { CSVParser.new(input_csv, output_json, mode: 'test') }
 
+	def open_and_parse_json(file)
+		JSON.parse(File.read(file, :encoding => "UTF-8"))
+	end
+
 	context "intitialization" do
 		let(:input_csv) { 'spec/spec_data/dummy.csv' }
 		let(:output_json) { 'spec/spec_data/dummy.json' }
 
 		it "knows if it is being called for tests" do
 			parser.csv_to_json
-			expect(File.read(output_json)).to match(/ComedyCentral/)
+			expect(JSON.parse(File.read(output_json))[0]).to include("giver")
 		end
 
 		it "gets its config from a YAML file" do
@@ -25,37 +29,21 @@ RSpec.describe CSVParser do
 			parser = CSVParser.new(input_csv, output_json, config: yaml_path)
 			parser.csv_to_json
 
-			expect(File.read(output_json)).to include('My Server')
+			expect(File.read(output_json)).to include('My%20Server')
 		end
 	end
-	context "a discord praise with multiple @ references" do
+	context "discord praises with newlines, etc" do
 		testfile = 'spec_csv'
 		let(:samples_folder) { 'spec/spec_data/' }
 		let(:input_csv) { samples_folder + testfile + '.csv' }
 		let(:output_json) { outputs_folder + testfile + '.json' }
 
-		it "converts a csv with an array of multiple praises into a json of the specified format" do
+		it "handles them as expected" do
 			expected_json = samples_folder + testfile + '.json'
-
-			# parser.csv_to_json(pretty: true)
-			parser.csv_to_json
+			parser.csv_to_json(pretty: true)
+			# parser.csv_to_json
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))			
-		end
-	end
-
-	context "a discord praise with multiple @ references" do
-		testfile = 'discord_praise_array'
-		let(:samples_folder) { 'samples/discord/' }
-		let(:input_csv) { samples_folder + testfile + '.csv' }
-		let(:output_json) { outputs_folder + testfile + '.json' }
-	
-		it "converts a csv with an array of multiple praises into a json of the specified format" do
-			expected_json = samples_folder + testfile + '.json'
-
-			parser.csv_to_json
-
-			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end
 	end
 
@@ -68,12 +56,13 @@ RSpec.describe CSVParser do
 		it "uses the default_server and channel ids if none is provided" do
 			expected_json = samples_folder + testfile + '.json'
 			parser.csv_to_json
+			output = open_and_parse_json(output_json)[0]
 
-			expect(File.read(output_json)).to eq(File.read(expected_json))
+			expect(output).to include('sourceName' => "DISCORD:Right%20Here:ComedyCentral")
 		end
 
 		it "indents the json if pretty flag is set" do
-			expected_json = samples_folder + testfile +'_pretty.json'
+			expected_json = samples_folder + testfile + '_pretty.json'
 			parser.csv_to_json(pretty: true)
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))

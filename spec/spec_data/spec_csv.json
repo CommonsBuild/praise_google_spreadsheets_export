@@ -1,6 +1,103 @@
 [
-{"giver":"{\"id\":null,\"username\":\"sis\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}","recipients":["{\"id\":null,\"username\":\"bro\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}"],"praiseReason":"reason with no quote","source":"{\"id\":\"123456789\",\"name\":\"Right Here\",\"channelId\":\"9876543321\",\"channelName\":\"ComedyCentral\",\"platform\":\"DISCORD\"}"},
-{"giver":"{\"id\":null,\"username\":\"2 gal\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}","recipients":["{\"id\":null,\"username\":\"A gal\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}"],"praiseReason":"quote because of\na newline","source":"{\"id\":\"123456789\",\"name\":\"Right Here\",\"channelId\":\"9876543321\",\"channelName\":\"ComedyCentral\",\"platform\":\"DISCORD\"}"},
-{"giver":"{\"id\":null,\"username\":\"sis\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}","recipients":["{\"id\":null,\"username\":\"bro\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}"],"praiseReason":"reason with no quote","source":"{\"id\":\"123456789\",\"name\":\"Right Here\",\"channelId\":\"9876543321\",\"channelName\":\"ComedyCentral\",\"platform\":\"DISCORD\"}"},
-{"giver":"{\"id\":null,\"username\":\"Other guy\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}","recipients":["{\"id\":null,\"username\":\"One guy\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}"],"praiseReason":"quote because,of a comma","source":"{\"id\":\"123456789\",\"name\":\"Right Here\",\"channelId\":\"9876543321\",\"channelName\":\"ComedyCentral\",\"platform\":\"DISCORD\"}"}
+	{
+		"createdAt": "2020-10-10 00:00:00 +0800",
+		"giver":
+			{
+				"id": "",
+				"username": "sis",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"receiver":
+			{
+				"id": "",
+				"username": "bro",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "reason with no quote",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	},
+	{
+		"createdAt": "2020-10-10 00:00:00 +0800",
+		"giver":
+			{
+				"id": "",
+				"username": "2 gal",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"receiver":
+			{
+				"id": "",
+				"username": "A gal",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "quote because of
+a newline",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	},
+	{
+		"createdAt": "2020-10-10 00:00:00 +0800",
+		"giver":
+			{
+				"id": "",
+				"username": "sis",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"receiver":
+			{
+				"id": "",
+				"username": "bro",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "reason with no quote",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	},
+	{
+		"createdAt": "2020-10-10 00:00:00 +0800",
+		"giver":
+			{
+				"id": "",
+				"username": "Other guy",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"receiver":
+			{
+				"id": "",
+				"username": "One guy",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "quote because,of a comma",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	},
+	{
+		"createdAt": "2020-10-10 00:00:00 +0800",
+		"giver":
+			{
+				"id": "",
+				"username": "lass",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"receiver":
+			{
+				"id": "",
+				"username": "lad",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "quote because of \"internal\" double quote",
+		"sourceId": "DISCORD:123456789:9876543321",
+		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
+	}
 ]

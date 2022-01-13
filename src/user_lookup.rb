@@ -9,7 +9,16 @@ class UserLookup
 	def check_header(header)
 		@input_csv.read[header]
 	end
+	def get_user_from_username(name)
+		puts name
+		user = {}
+		@input_csv.each do |row| 
+			puts row[:username]
+			puts row[:username] == name
+		end
 
+		return user
+	end
 	def close
 		@input_csv.close
 	end

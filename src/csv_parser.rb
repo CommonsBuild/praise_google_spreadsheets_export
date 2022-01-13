@@ -2,6 +2,8 @@ require 'yaml'
 require 'csv'
 require 'json'
 require 'pry'
+require 'time'
+require "erb"
 
 class CSVParser
 	def initialize(input_csv, output_json, *args)
@@ -37,25 +39,19 @@ class CSVParser
 	end
 
 	def create_json(line, pretty)
-		if pretty
-			formatted_json(line)
-		else
-			json = JSON.generate(
-				giver: user_struct(line[:from]),
-				recipients: [user_struct(line[:to])],
-				praiseReason: line[:reason].partition(/(f|F)or/)[-1].strip(),
-				source: source_struct(line)
-			)
-		end
+		json = JSON.pretty_generate(
+			createdAt: formatted_date(line[:date]),
+			giver: user_struct(line[:from]),
+			receiver: user_struct(line[:to]),
+			praiseReason: line[:reason].partition(/(f|F)or/)[-1].strip().gsub('"','\"').gsub('\n','\\n'),
+			sourceId: source(line)[:source_id],
+			sourceName: source(line)[:source_name]
+		)
+		pretty ? formatted_json(json) : json
 	end
 	def source_struct(line)
 		source = source(line)
 		JSON.generate(
-			id: source[:server_id],
-			name: source[:server_name],
-			channelId: source[:channel_id],
-			channelName: source[:channel_name],
-			platform: 'DISCORD'
 		)	 
 	end
 
@@ -69,27 +65,32 @@ class CSVParser
 		channel_id = check_for_header(:channel_id) ? line[:channel_id] : @CONFIG['default_channel']['id']
 		channel_name = check_for_header(:channel_name) ? line[:channel_name] : @CONFIG['default_channel']['name']
 		return { 
-			server_id: server_id,
-			server_name: server_name,
-			channel_id: channel_id,
-			channel_name: channel_name
+			source_id: "DISCORD:#{server_id}:#{channel_id}",
+			source_name: "DISCORD:#{url_encoded(server_name,channel_name)}",
 		}
 	end
 
-	def recipients
-		recipients_array = []
-		recipients = line[:reason].split("for")[0].split('@')
-		recipients.each do |username|
+	def receivers
+		receivers_array = []
+		receivers = line[:reason].split("for")[0].split('@')
+		receivers.each do |username|
 			user = user_struct(username)
-			recipients_array.push
+			receivers_array.push(user)
 		end
 	end
 
 	def user_struct(username)
 		user = get_user_from_username(username)
+		
+		if user[:discriminator]
+			username_sring = user[:username] + "#" +user[:discriminator]
+		else
+			username_sring = user[:username]
+		end
+
 		JSON.generate(
 			id: user[:discord_id],
-			username: user[:username],
+			username: username_sring,
 			profileImageURL: user[:imageurl],
 			platform: 'DISCORD'
 		)
@@ -111,32 +112,47 @@ class CSVParser
 		return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
 	end
 
-	def formatted_json(line)
-		source = source(line)
-		"{
-			\"giver\":
-				#{formatted_user(line[:from])},
-			\"recipients\": [
-				#{formatted_user(line[:to])}
-			],
-			\"praiseReason\": \"#{line[:reason].partition(/(f|F)or/)[-1].strip()}\",
-			\"source\": {
-				\"id\": \"#{source[:server_id]}\",
-				\"name\": \"#{source[:server_name]}\",
-				\"channelId\": \"#{source[:channel_id]}\",
-				\"channelName\": \"#{source[:channel_name]}\",
-				\"platform\": \"DISCORD\"
-			}
-		}"
+	def formatted_json(json)
+		line = JSON.parse(json)
+		giver = JSON.parse(line["giver"])
+		receiver = JSON.parse(line["receiver"])
+		"	{
+		\"createdAt\": \"#{line["createdAt"]}\",
+		\"giver\":
+			{
+				\"id\": \"#{giver["id"]}\",
+				\"username\": \"#{giver["username"]}\",
+				\"profileImageURL\": \"#{giver["profileImageUrl"]}\",
+				\"platform\": \"#{giver["platform"]}\"
+			},
+		\"receiver\":
+			{
+				\"id\": \"#{receiver["id"]}\",
+				\"username\": \"#{receiver["username"]}\",
+				\"profileImageURL\": \"#{receiver["profileImageUrl"]}\",
+				\"platform\": \"#{receiver["platform"]}\"
+			},
+		\"praiseReason\": \"#{line["praiseReason"]}\",
+		\"sourceId\": \"#{line["sourceId"]}\",
+		\"sourceName\": \"#{line["sourceName"]}\"
+	}"
 	end
 
 	def formatted_user(username)
 		user = get_user_from_username(username)
 		return "{
 					\"id\": \"#{user[:discord_id]}\",
-					\"username\": \"#{user[:username]}\",
+					\"username\": \"#{user[:username]}\##{user[:discriminator]}\",
 					\"profileImageURL\": \"#{user[:imageurl]}\",
 					\"platform\": \"DISCORD\"
 				}"
+	end
+
+	def formatted_date(date)
+		Time.parse(date)
+	end
+
+	def url_encoded(server, channel)
+		"#{ERB::Util.url_encode(server)}:#{ERB::Util.url_encode(channel)}"
 	end
 end

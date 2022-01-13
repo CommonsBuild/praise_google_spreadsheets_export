@@ -1,27 +1,22 @@
 [
-{
-			"giver":
-				{
-					"id": "135294406499631105",
-					"username": "pab🐝🐙",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				},
-			"recipients": [
-				{
-					"id": "480128711941685289",
-					"username": "Mount Manu",
-					"profileImageURL": "",
-					"platform": "DISCORD"
-				}
-			],
-			"praiseReason": "devoting 20 minutes to going through our Commons configuration dashboard and providing valuable feedback on how to make it better!",
-			"source": {
-				"id": "810180621930070088",
-				"name": "Token Engineering Commons",
-				"channelId": "810180622336262195",
-				"channelName": "🙏｜praise",
+	{
+		"createdAt": "2021-08-01 00:00:00 +0800",
+		"giver":
+			{
+				"id": "135294406499631105",
+				"username": "pab🐝🐙#6151",
+				"profileImageURL": "",
 				"platform": "DISCORD"
-			}
-		}
+			},
+		"receiver":
+			{
+				"id": "480128711941685289",
+				"username": "Mount Manu#3530",
+				"profileImageURL": "",
+				"platform": "DISCORD"
+			},
+		"praiseReason": "devoting 20 \"minutes\" to going through our Commons configuration dashboard and providing valuable feedback on how to make it better!",
+		"sourceId": "DISCORD:810180621930070088:810180622336262195",
+		"sourceName": "DISCORD:Token%20Engineering%20Commons:%F0%9F%99%8F%EF%BD%9Cpraise"
+	}
 ]
