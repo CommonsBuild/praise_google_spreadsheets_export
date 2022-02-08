@@ -4,18 +4,18 @@
 		"giver":
 			{
 				"id": "135294406499631105",
-				"username": "pab🐝🐙#6151",
-				"profileImageURL": "",
+				"username": "bub🐙🐝#6151",
+				"profileImageURL": "a33c7eb1234567e9e3c19c9187965ad6",
 				"platform": "DISCORD"
 			},
 		"receiver":
 			{
 				"id": "480128711941685289",
-				"username": "Mount Manu#3530",
-				"profileImageURL": "",
+				"username": "Mountainous Man#3530",
+				"profileImageURL": "ea5b03ae208b9802f1c1e75d1f489f99",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "devoting 20 \"minutes\" to going through our Commons configuration dashboard and providing valuable feedback on how to make it better!",
+		"reason": "devoting 20 \"minutes\" to going through our Commons configuration dashboard and providing valuable feedback on how to make it better!",
 		"sourceId": "DISCORD:810180621930070088:810180622336262195",
 		"sourceName": "DISCORD:Token%20Engineering%20Commons:%F0%9F%99%8F%EF%BD%9Cpraise"
 	}

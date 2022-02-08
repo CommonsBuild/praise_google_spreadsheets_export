@@ -4,18 +4,18 @@
 		"giver":
 			{
 				"id": "915659709657280592",
-				"username": "NikosamA98#5909",
-				"profileImageURL": "",
+				"username": "Nikolodeon#5909",
+				"profileImageURL": "c545d0b39aadd5d720466bed7fc925c2",
 				"platform": "DISCORD"
 			},
 		"receiver":
 			{
 				"id": "908547168925810699",
-				"username": "EdgarWeb3#5783",
-				"profileImageURL": "",
+				"username": "BadgerBob#5783",
+				"profileImageURL": "99890c1987654c7d449b171363311322",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "inviting me to the server 😄",
+		"reason": "inviting me to the server 😄",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
 	}
