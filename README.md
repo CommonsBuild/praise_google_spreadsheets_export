@@ -1,4 +1,4 @@
-# teensy_rake
+# Praise csv to json parser
 
 A ruby script for converting the csvs of praise data into json handled by the Commons Stack praise system.
 
