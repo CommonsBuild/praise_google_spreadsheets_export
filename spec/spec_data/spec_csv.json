@@ -15,7 +15,7 @@
 				"profileImageURL": "",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "reason with no quote",
+		"reason": "reason with no quote",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
 	},
@@ -35,7 +35,7 @@
 				"profileImageURL": "",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "quote because of
+		"reason": "quote because of
 a newline",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
@@ -56,7 +56,7 @@ a newline",
 				"profileImageURL": "",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "reason with no quote",
+		"reason": "reason with no quote",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
 	},
@@ -76,7 +76,7 @@ a newline",
 				"profileImageURL": "",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "quote because,of a comma",
+		"reason": "quote because,of a comma",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
 	},
@@ -96,7 +96,7 @@ a newline",
 				"profileImageURL": "",
 				"platform": "DISCORD"
 			},
-		"praiseReason": "quote because of \"internal\" double quote",
+		"reason": "quote because of \"internal\" double quote",
 		"sourceId": "DISCORD:123456789:9876543321",
 		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
 	}

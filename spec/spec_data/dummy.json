@@ -1,9 +1,19 @@
 [
 {
   "createdAt": "2010-01-01 00:00:00 +0800",
-  "giver": "{\"id\":null,\"username\":\"Data\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}",
-  "receiver": "{\"id\":null,\"username\":\"Some\",\"profileImageURL\":null,\"platform\":\"DISCORD\"}",
-  "praiseReason": "",
+  "giver": {
+    "id": null,
+    "username": "Data#1234",
+    "profileImageURL": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "id": null,
+    "username": "Some#4321",
+    "profileImageURL": null,
+    "platform": "DISCORD"
+  },
+  "reason": "",
   "sourceId": "DISCORD::",
   "sourceName": "DISCORD:My%20Server:My%20Channel"
 }

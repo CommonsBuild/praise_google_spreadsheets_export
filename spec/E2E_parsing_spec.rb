@@ -22,7 +22,7 @@ RSpec.describe 'E2E parsing' do
 		it "converts a csv with an array of multiple praises into a json of the specified format" do
 			output_json = outputs_folder + testfile + '_pretty.json'
 			expected_json = samples_folder + testfile + '_pretty.json'
-			parser = CSVParser.new(input_csv, output_json)
+			parser = CSVParser.new(input_csv, output_json, mode: 'test')
 
 			parser.csv_to_json(pretty: true)
 

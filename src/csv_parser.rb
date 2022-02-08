@@ -29,7 +29,7 @@ class CSVParser
 		@input_csv.each_with_index do |line, idx|
 			if idx == @input_rows - 2
 				@output_json << create_json(line, pretty)
-			else
+			else				
 				@output_json << create_json(line, pretty) + ",\n"
 			end
 		end	
@@ -43,7 +43,7 @@ class CSVParser
 			createdAt: formatted_date(line[:date]),
 			giver: user_struct(line[:from]),
 			receiver: user_struct(line[:to]),
-			praiseReason: line[:reason].partition(/(f|F)or/)[-1].strip().gsub('"','\"').gsub('\n','\\n'),
+			reason: line[:reason].partition(/(f|F)or/)[-1].strip().gsub('"','\"').gsub('\n','\\n'),
 			sourceId: source(line)[:source_id],
 			sourceName: source(line)[:source_name]
 		)
@@ -81,71 +81,60 @@ class CSVParser
 
 	def user_struct(username)
 		user = get_user_from_username(username)
-		
 		if user[:discriminator]
-			username_sring = user[:username] + "#" +user[:discriminator]
+			username_string = user[:username] + "#" +user[:discriminator]
 		else
-			username_sring = user[:username]
+			username_string = user[:username]
 		end
 
-		JSON.generate(
+		user =	{
 			id: user[:discord_id],
-			username: username_sring,
-			profileImageURL: user[:imageurl],
+			username: username_string,
+			profileImageURL: user[:profileImageURL],
 			platform: 'DISCORD'
-		)
+		}
 	end
 
 	def get_user_from_username(username)
 		users = CSV.open(@CONFIG['discord_ids'], "rb:UTF-8", headers: true, header_converters: :symbol) if @CONFIG['discord_ids']
 		name = username
-		server_id = ''
+		discriminator = ''
 		if username.match(/#/)
 			name = username.split('#')[0]
-			server_id = username.split('#')[1]
+			discriminator = username.split('#')[1]
 		end
 		users.each do |row| 
 			if row[:username] == name 
-				return row
+				return {username: row[:username] + '#' + row[:discriminator], server_id: row[:server_id], discord_id: row[:discord_id],profileImageURL: row[:avatar]}
 			end
 		end
-		return {username: username, server_id: server_id, discord_id: nil,imageurl: nil}
+		return {username: username, server_id: nil, discord_id: nil,imageurl: nil}
 	end
 
 	def formatted_json(json)
 		line = JSON.parse(json)
-		giver = JSON.parse(line["giver"])
-		receiver = JSON.parse(line["receiver"])
+		giver = user_struct(line["giver"]["username"])
+		receiver = line["receiver"]
 		"	{
 		\"createdAt\": \"#{line["createdAt"]}\",
 		\"giver\":
 			{
-				\"id\": \"#{giver["id"]}\",
-				\"username\": \"#{giver["username"]}\",
-				\"profileImageURL\": \"#{giver["profileImageUrl"]}\",
-				\"platform\": \"#{giver["platform"]}\"
+				\"id\": \"#{giver[:id]}\",
+				\"username\": \"#{giver[:username]}\",
+				\"profileImageURL\": \"#{giver[:profileImageURL]}\",
+				\"platform\": \"#{giver[:platform]}\"
 			},
 		\"receiver\":
 			{
 				\"id\": \"#{receiver["id"]}\",
 				\"username\": \"#{receiver["username"]}\",
-				\"profileImageURL\": \"#{receiver["profileImageUrl"]}\",
+				\"profileImageURL\": \"#{receiver["profileImageURL"]}\",
 				\"platform\": \"#{receiver["platform"]}\"
 			},
-		\"praiseReason\": \"#{line["praiseReason"]}\",
+		\"reason\": \"#{line["reason"]}\",
 		\"sourceId\": \"#{line["sourceId"]}\",
 		\"sourceName\": \"#{line["sourceName"]}\"
 	}"
-	end
-
-	def formatted_user(username)
-		user = get_user_from_username(username)
-		return "{
-					\"id\": \"#{user[:discord_id]}\",
-					\"username\": \"#{user[:username]}\##{user[:discriminator]}\",
-					\"profileImageURL\": \"#{user[:imageurl]}\",
-					\"platform\": \"DISCORD\"
-				}"
 	end
 
 	def formatted_date(date)

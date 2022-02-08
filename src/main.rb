@@ -14,6 +14,6 @@ puts output_file
 		input_file, 
 		output_file
 	)
-	parser.csv_to_json
+	parser.csv_to_json(pretty: false)
 
 # end
