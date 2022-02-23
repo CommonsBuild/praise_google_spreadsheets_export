@@ -10,12 +10,12 @@ class CSVParser
 		@input_csv = CSV.open(input_csv, "rb:UTF-8", headers: true, header_converters: :symbol)
 		@input_rows = CSV.read(input_csv, encoding: "UTF-8").count
 		@output_json = File.open(output_json, "w")
-		
+
 		config_file = 'config.yml'
 		if args.count > 0
-			args = args[0] 
-			if args[:config] 
-				config_file = args[:config] 
+			args = args[0]
+			if args[:config]
+				config_file = args[:config]
 			end
 			if args[:mode] == 'test'
 				config_file = 'spec/spec_config.yml'
@@ -29,10 +29,10 @@ class CSVParser
 		@input_csv.each_with_index do |line, idx|
 			if idx == @input_rows - 2
 				@output_json << create_json(line, pretty)
-			else				
+			else
 				@output_json << create_json(line, pretty) + ",\n"
 			end
-		end	
+		end
 
 		@output_json << "\n]"
 		@output_json.close
@@ -52,7 +52,7 @@ class CSVParser
 	def source_struct(line)
 		source = source(line)
 		JSON.generate(
-		)	 
+		)
 	end
 
 	def check_for_header(header)
@@ -64,7 +64,7 @@ class CSVParser
 		server_name = check_for_header(:source_name) ? line[:source_name] : @CONFIG['default_server']['name']
 		channel_id = check_for_header(:channel_id) ? line[:channel_id] : @CONFIG['default_channel']['id']
 		channel_name = check_for_header(:channel_name) ? line[:channel_name] : @CONFIG['default_channel']['name']
-		return { 
+		return {
 			source_id: "DISCORD:#{server_id}:#{channel_id}",
 			source_name: "DISCORD:#{url_encoded(server_name,channel_name)}",
 		}
@@ -88,9 +88,9 @@ class CSVParser
 		end
 
 		user =	{
-			id: user[:discord_id],
-			username: username_string,
-			profileImageURL: user[:profileImageURL],
+			accountId: user[:discord_id],
+			name: username_string,
+			avatarId: user[:profileImageURL],
 			platform: 'DISCORD'
 		}
 	end
@@ -103,8 +103,8 @@ class CSVParser
 			name = username.split('#')[0]
 			discriminator = username.split('#')[1]
 		end
-		users.each do |row| 
-			if row[:username] == name 
+		users.each do |row|
+			if row[:username] == name
 				return {username: row[:username] + '#' + row[:discriminator], server_id: row[:server_id], discord_id: row[:discord_id],profileImageURL: row[:avatar]}
 			end
 		end
@@ -119,16 +119,16 @@ class CSVParser
 		\"createdAt\": \"#{line["createdAt"]}\",
 		\"giver\":
 			{
-				\"id\": \"#{giver[:id]}\",
-				\"username\": \"#{giver[:username]}\",
-				\"profileImageURL\": \"#{giver[:profileImageURL]}\",
+				\"accountId\": \"#{giver[:id]}\",
+				\"name\": \"#{giver[:username]}\",
+				\"avatarId\": \"#{giver[:profileImageURL]}\",
 				\"platform\": \"#{giver[:platform]}\"
 			},
 		\"receiver\":
 			{
-				\"id\": \"#{receiver["id"]}\",
-				\"username\": \"#{receiver["username"]}\",
-				\"profileImageURL\": \"#{receiver["profileImageURL"]}\",
+				\"accountId\": \"#{receiver["id"]}\",
+				\"name\": \"#{receiver["username"]}\",
+				\"avatarId\": \"#{receiver["profileImageURL"]}\",
 				\"platform\": \"#{receiver["platform"]}\"
 			},
 		\"reason\": \"#{line["reason"]}\",
