@@ -24,13 +24,14 @@ class CSVParser
 		@CONFIG = YAML.load(File.read(config_file))
 	end
 
-	def csv_to_json(pretty: false)
+	def csv_to_json()
 		@output_json << "[\n"
+
 		@input_csv.each_with_index do |line, idx|
 			if idx == @input_rows - 2
-				@output_json << create_json(line, pretty)
+				@output_json << create_json(line)
 			else
-				@output_json << create_json(line, pretty) + ",\n"
+				@output_json << create_json(line) + ",\n"
 			end
 		end
 
@@ -38,7 +39,7 @@ class CSVParser
 		@output_json.close
 	end
 
-	def create_json(line, pretty)
+	def create_json(line)
 		json = JSON.pretty_generate(
 			createdAt: formatted_date(line[:date]),
 			giver: user_struct(line[:from]),
@@ -47,7 +48,6 @@ class CSVParser
 			sourceId: source(line)[:source_id],
 			sourceName: source(line)[:source_name]
 		)
-		pretty ? formatted_json(json) : json
 	end
 	def source_struct(line)
 		source = source(line)
@@ -109,32 +109,6 @@ class CSVParser
 			end
 		end
 		return {username: username, server_id: nil, discord_id: nil,imageurl: nil}
-	end
-
-	def formatted_json(json)
-		line = JSON.parse(json)
-		giver = user_struct(line["giver"]["username"])
-		receiver = line["receiver"]
-		"	{
-		\"createdAt\": \"#{line["createdAt"]}\",
-		\"giver\":
-			{
-				\"accountId\": \"#{giver[:id]}\",
-				\"name\": \"#{giver[:username]}\",
-				\"avatarId\": \"#{giver[:profileImageURL]}\",
-				\"platform\": \"#{giver[:platform]}\"
-			},
-		\"receiver\":
-			{
-				\"accountId\": \"#{receiver["id"]}\",
-				\"name\": \"#{receiver["username"]}\",
-				\"avatarId\": \"#{receiver["profileImageURL"]}\",
-				\"platform\": \"#{receiver["platform"]}\"
-			},
-		\"reason\": \"#{line["reason"]}\",
-		\"sourceId\": \"#{line["sourceId"]}\",
-		\"sourceName\": \"#{line["sourceName"]}\"
-	}"
 	end
 
 	def formatted_date(date)
