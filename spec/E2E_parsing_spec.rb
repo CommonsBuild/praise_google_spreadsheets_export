@@ -1,4 +1,5 @@
 require_relative '../src/csv_parser'
+require_relative '../src/json_parser'
 
 RSpec.describe 'E2E parsing' do
 	let(:samples_folder) { 'samples/complete/' }
@@ -29,4 +30,16 @@ RSpec.describe 'E2E parsing' do
 			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end
 	end
+
+	it "converts a json of praise quants into csv format" do
+		testfile = 'sample_praise_quant'
+		input_json = samples_folder + testfile + '.json'
+		output_csv = outputs_folder + testfile + '.csv'
+		expected_csv = samples_folder + testfile + '.csv'
+		parser = JSONParser.new(input_json, output_csv, mode: 'test')
+
+		parser.json_to_csv()
+		expect(File.read(output_csv)).to eq(File.read(expected_csv))
+	end
+
 end
