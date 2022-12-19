@@ -35,24 +35,28 @@ class JSONParser
 	end
 
 	def json_to_csv()
-		@input_json["quantifications"].each_with_index do |quant, idx| 
+		@input_json.first["quantifications"].each_with_index do |quant, idx| 
 			@headers.append("quant#{idx+1}Id","quant#{idx+1}Score")
 		end
+		
 		CSV.open(@output_csv, "w") do |csv|
 			csv << @headers
-			quant_row = [
-				@input_json["_id"],
-				@input_json["reason"],
-				@input_json["server"],
-				@input_json["giver"]["_id"],
-				@input_json["giver"]["name"],
-				@input_json["receiver"]["_id"],
-				@input_json["receiver"]["name"]
-			]
-			@input_json["quantifications"].each_with_index do |quant, idx| 
-				quant_row.append(quant["quantifier"],quant["score"])
+			@input_json.each do |quant_row|
+puts quant_row
+				row_arr = [
+					quant_row["_id"],
+					quant_row["reasonRealized"],
+					quant_row["sourceName"],
+					quant_row["giver"]["_id"],
+					quant_row["giver"]["name"],
+					quant_row["receiver"]["_id"],
+					quant_row["receiver"]["name"]
+				]
+				quant_row["quantifications"].each_with_index do |quant, idx| 
+					row_arr.append(quant["quantifier"],quant["score"])
+				end
+				csv << row_arr
 			end
-			csv << quant_row
 		end
 	end
 

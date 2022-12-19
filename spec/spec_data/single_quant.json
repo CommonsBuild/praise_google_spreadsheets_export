@@ -1,13 +1,17 @@
+[
 {
-  "_id":"6", 
-  "reason":"we getting better everyday!", 
-  "server":"DISCORD:My%Server:hallelujah", 
+  "_id":"4c8de", 
+  "reasonRealized":"we getting better everyday!", 
+  "sourceName":"DISCORD:My%Server:hallelujah", 
   "quantifications":[
       {
         "quantifier":"87", 
         "score":0
       }, {
         "quantifier":"69", 
+        "score":7
+      }, {
+        "quantifier":"11", 
         "score":"3"
       }
     ], 
@@ -19,4 +23,34 @@
 		"_id":"56", 
 		"name":"YMo#1144"
 	}
-}
+},{
+    "_id":"84cde",
+    "_idLabelRealized":"#ec4c",
+    "reasonRealized":"for her incredible support to Comms while we're all in Barcelona, I truly appreciate all your help 🙏🏽",
+    "sourceName":"DISCORD:My%Server:hallelujah",
+    "quantifications":[{
+      "quantifier":"87",
+      "score":0,
+      "scoreRealized":0
+    },{
+      "quantifier":"69",
+      "score":0,
+      "scoreRealized":0
+    },{
+      "quantifier":"11",
+      "score":5,
+      "scoreRealized":5
+  }],
+    "giver":{
+      "_id":"56",
+      "name":"gitattahere#2043",
+      "nameRealized":"gitattahere"
+    },
+    "receiver":{
+      "_id":"43",
+      "name":"Yntalco#5555",
+      "nameRealized":"Yntalco"
+    },
+    "scoreRealized":5
+  }
+]

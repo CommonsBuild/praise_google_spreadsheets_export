@@ -41,5 +41,4 @@ RSpec.describe 'E2E parsing' do
 		parser.json_to_csv()
 		expect(File.read(output_csv)).to eq(File.read(expected_csv))
 	end
-
 end

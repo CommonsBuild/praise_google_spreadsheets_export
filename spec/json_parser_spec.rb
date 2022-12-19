@@ -8,30 +8,6 @@ RSpec.describe JSONParser do
 		JSON.parse(File.read(file, :encoding => "UTF-8"))
 	end
 
-	context "intitialization" do
-		let(:input_json) { 'spec/spec_data/jp_dummy.json' }
-		let(:output_csv) { 'spec/spec_data/jp_dummy.csv' }
-
-		# it "knows if it is being called for tests" do
-		# 	parser.json_to_csv
-		# 	expect(CSV.read(output_csv)).to include("YMo")
-		# end
-
-		# it "gets its config from a YAML file" do
-		# 	yaml_path = outputs_folder + 'dummy.yml'
-		# 	yaml = File.open(yaml_path, 'w') { |f|
-		# 		f << "default_server:\n"
-		# 		f << "  name: 'My Server'\n"
-		# 		f << "default_channel:\n"
-		# 		f << "  name: 'My Channel'\n"
-		# 		f << "discord_ids: 'spec/spec_data/spec_discord_ids.csv'\n"
-		# 	}
-		# 	parser = JSONParser.new(input_json, output_csv, config: yaml_path)
-		# 	parser.json_to_csv
-
-		# 	expect(File.read(output_csv)).to include('My%20Server')
-		# end
-	end
 	context "discord praises with newlines, etc" do
 		testfile = 'single_quant'
 		let(:samples_folder) { 'spec/spec_data/' }
