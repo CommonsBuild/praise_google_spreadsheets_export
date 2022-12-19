@@ -1,0 +1,22 @@
+{
+  "_id":"6", 
+  "reason":"we getting better everyday!", 
+  "server":"DISCORD:My%Server:hallelujah", 
+  "quantifications":[
+      {
+        "quantifier":"87", 
+        "score":0
+      }, {
+        "quantifier":"69", 
+        "score":"3"
+      }
+    ], 
+	"giver":{
+		"_id":"72", 
+		"name":"Min#1245"
+	}, 
+	"receiver":{
+		"_id":"56", 
+		"name":"YMo#1144"
+	}
+}
