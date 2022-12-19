@@ -11,7 +11,7 @@ RSpec.describe 'E2E parsing' do
 		expected_json = samples_folder + testfile + '.json'
 		parser = CSVParser.new(input_csv, output_json, mode: 'test')
 
-		parser.csv_to_json(pretty: true)
+		parser.csv_to_json()
 		expect(File.read(output_json)).to eq(File.read(expected_json))
 	end
 
@@ -20,11 +20,11 @@ RSpec.describe 'E2E parsing' do
 		let(:input_csv) { samples_folder + testfile + '.csv' }
 
 		it "converts a csv with an array of multiple praises into a json of the specified format" do
-			output_json = outputs_folder + testfile + '_pretty.json'
-			expected_json = samples_folder + testfile + '_pretty.json'
+			output_json = outputs_folder + testfile + '.json'
+			expected_json = samples_folder + testfile + '.json'
 			parser = CSVParser.new(input_csv, output_json, mode: 'test')
 
-			parser.csv_to_json(pretty: true)
+			parser.csv_to_json()
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end

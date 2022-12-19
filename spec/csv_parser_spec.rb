@@ -40,7 +40,7 @@ RSpec.describe CSVParser do
 
 		it "handles them as expected" do
 			expected_json = samples_folder + testfile + '.json'
-			parser.csv_to_json(pretty: true)
+			parser.csv_to_json()
 			# parser.csv_to_json
 
 			expect(File.read(output_json)).to eq(File.read(expected_json))			
@@ -59,13 +59,6 @@ RSpec.describe CSVParser do
 			output = open_and_parse_json(output_json)[0]
 
 			expect(output).to include('sourceName' => "DISCORD:Right%20Here:ComedyCentral")
-		end
-
-		it "indents the json if pretty flag is set" do
-			expected_json = samples_folder + testfile + '_pretty.json'
-			parser.csv_to_json(pretty: true)
-
-			expect(File.read(output_json)).to eq(File.read(expected_json))
 		end
 	end
 	context "a discord praise with a user with unknown discord_id" do

@@ -2,15 +2,15 @@
 {
   "createdAt": "2010-01-01 00:00:00 +0800",
   "giver": {
-    "id": null,
-    "username": "Data#1234",
-    "profileImageURL": null,
+    "accountId": null,
+    "name": "Data#1234",
+    "avatarId": null,
     "platform": "DISCORD"
   },
   "receiver": {
-    "id": null,
-    "username": "Some#4321",
-    "profileImageURL": null,
+    "accountId": null,
+    "name": "Some#4321",
+    "avatarId": null,
     "platform": "DISCORD"
   },
   "reason": "",

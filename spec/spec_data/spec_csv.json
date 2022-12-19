@@ -1,103 +1,92 @@
 [
-	{
-		"createdAt": "2020-10-10 00:00:00 +0800",
-		"giver":
-			{
-				"id": "",
-				"username": "sis",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"receiver":
-			{
-				"id": "",
-				"username": "bro",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"reason": "reason with no quote",
-		"sourceId": "DISCORD:123456789:9876543321",
-		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
-	},
-	{
-		"createdAt": "2020-10-10 00:00:00 +0800",
-		"giver":
-			{
-				"id": "",
-				"username": "2 gal",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"receiver":
-			{
-				"id": "",
-				"username": "A gal",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"reason": "quote because of
-a newline",
-		"sourceId": "DISCORD:123456789:9876543321",
-		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
-	},
-	{
-		"createdAt": "2020-10-10 00:00:00 +0800",
-		"giver":
-			{
-				"id": "",
-				"username": "sis",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"receiver":
-			{
-				"id": "",
-				"username": "bro",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"reason": "reason with no quote",
-		"sourceId": "DISCORD:123456789:9876543321",
-		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
-	},
-	{
-		"createdAt": "2020-10-10 00:00:00 +0800",
-		"giver":
-			{
-				"id": "",
-				"username": "Other guy",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"receiver":
-			{
-				"id": "",
-				"username": "One guy",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"reason": "quote because,of a comma",
-		"sourceId": "DISCORD:123456789:9876543321",
-		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
-	},
-	{
-		"createdAt": "2020-10-10 00:00:00 +0800",
-		"giver":
-			{
-				"id": "",
-				"username": "lass",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"receiver":
-			{
-				"id": "",
-				"username": "lad",
-				"profileImageURL": "",
-				"platform": "DISCORD"
-			},
-		"reason": "quote because of \"internal\" double quote",
-		"sourceId": "DISCORD:123456789:9876543321",
-		"sourceName": "DISCORD:Right%20Here:ComedyCentral"
-	}
+{
+  "createdAt": "2020-10-10 00:00:00 +0800",
+  "giver": {
+    "accountId": null,
+    "name": "sis#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "accountId": null,
+    "name": "bro#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "reason": "reason with no quote",
+  "sourceId": "DISCORD:123456789:9876543321",
+  "sourceName": "DISCORD:Right%20Here:ComedyCentral"
+},
+{
+  "createdAt": "2020-10-10 00:00:00 +0800",
+  "giver": {
+    "accountId": null,
+    "name": "2 gal#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "accountId": null,
+    "name": "A gal#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "reason": "quote because of\na newline",
+  "sourceId": "DISCORD:123456789:9876543321",
+  "sourceName": "DISCORD:Right%20Here:ComedyCentral"
+},
+{
+  "createdAt": "2020-10-10 00:00:00 +0800",
+  "giver": {
+    "accountId": null,
+    "name": "sis#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "accountId": null,
+    "name": "bro#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "reason": "reason with no quote",
+  "sourceId": "DISCORD:123456789:9876543321",
+  "sourceName": "DISCORD:Right%20Here:ComedyCentral"
+},
+{
+  "createdAt": "2020-10-10 00:00:00 +0800",
+  "giver": {
+    "accountId": null,
+    "name": "Other guy#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "accountId": null,
+    "name": "One guy#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "reason": "quote because,of a comma",
+  "sourceId": "DISCORD:123456789:9876543321",
+  "sourceName": "DISCORD:Right%20Here:ComedyCentral"
+},
+{
+  "createdAt": "2020-10-10 00:00:00 +0800",
+  "giver": {
+    "accountId": null,
+    "name": "lass#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "receiver": {
+    "accountId": null,
+    "name": "lad#6543",
+    "avatarId": null,
+    "platform": "DISCORD"
+  },
+  "reason": "quote because of \\\"internal\\\" double quote",
+  "sourceId": "DISCORD:123456789:9876543321",
+  "sourceName": "DISCORD:Right%20Here:ComedyCentral"
+}
 ]
